@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "better-auth": "^1.1.21",
+    "better-sqlite3": "^11.8.1",
     "next": "15.2.0",
-    "pnpm": "^10.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
