@@ -1,101 +1,107 @@
+import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Navbar />
+      <div className="bg-gray-50">
+        {/* Hero Section */}
+        <section className="relative bg-[url('/hero-image.jpg')] bg-cover bg-center text-white h-[85vh] flex items-center justify-center text-center">
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="relative z-10 px-6 max-w-3xl">
+            <h1 className="text-5xl font-bold leading-tight">
+              Find Your Perfect <span className="text-blue-400">Hangout Partner</span>
+            </h1>
+            <p className="mt-4 text-lg">
+              Discover new places, connect with travelers, and plan unforgettable trips together.
+            </p>
+            <div className="mt-6 space-x-4">
+              <Link href="/explore">
+                <button className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600">
+                  Explore Destinations
+                </button>
+              </Link>
+              <Link href="/sign-up">
+                <button className="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-black">
+                  Join Now
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {/* How It Works */}
+        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-500 text-center">
+          <h2 className="text-4xl font-bold">How It Works</h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-8">
+            {[
+              { title: "Find a Travel Buddy", desc: "Connect with like-minded travelers near you." },
+              { title: "Discover Destinations", desc: "Explore trending spots and hidden gems." },
+              { title: "Plan & Travel", desc: "Form groups, set itineraries, and explore together." }
+            ].map((item, index) => (
+              <div key={index} className="w-72 bg-white shadow-md p-6 rounded-lg">
+                <h3 className="text-xl text-blue-600 font-semibold">{item.title}</h3>
+                <p className="mt-2 text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Trending Destinations */}
+        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-500 text-center">
+          <h2 className="text-4xl font-bold">Trending Destinations</h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+            {["Bali", "Sikkim", "Ladakh"].map((place, index) => (
+              <div key={index} className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src={`/assets/dest-${index + 1}.jpg`}
+                  alt={place}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-white text-2xl font-semibold">{place}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 text-center">
+          <h2 className="text-4xl text-blue-500 font-bold">What Travelers Say</h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-8">
+            {[
+              { name: "Alex", review: "I found amazing friends and had unforgettable adventures!" },
+              { name: "Sophia", review: "This app made my solo trip 10x better!" },
+              { name: "Jake", review: "Loved exploring new places with my travel group!" }
+            ].map((user, index) => (
+              <div key={index} className="w-80 bg-white shadow-md p-6 rounded-lg text-gray-700">
+                <p className="italic">"{user.review}"</p>
+                <h4 className="mt-4 font-semibold text-blue-500">- {user.name}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Join CTA */}
+        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center">
+          <h2 className="text-4xl font-bold">Join the Hangout Community</h2>
+          <p className="mt-4">Meet like-minded travelers, explore destinations, and create amazing experiences.</p>
+          <Link href="/sign-up">
+            <button className="mt-6 px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-200">
+              Get Started
+            </button>
+          </Link>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white py-6 text-center">
+          <p>© 2025 Hangout.World | All rights reserved.</p>
+        </footer>
+      </div>
+    </>
   );
 }
