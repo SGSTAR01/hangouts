@@ -7,3 +7,4 @@ export const authClient = createAuthClient({
         passkeyClient()
     ]
 })
+

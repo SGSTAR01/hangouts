@@ -32,7 +32,7 @@ export async function signup(prevState: FormState, formData: FormData) {
       message: error.message,
     };
   }
-  redirect("/");
+  redirect("/profile");
 }
 
 export async function signin(prevState: FormState, formData: FormData) {
@@ -55,7 +55,24 @@ export async function signin(prevState: FormState, formData: FormData) {
       message: error.message,
     };
   }
-  redirect("/");
+  redirect("/profile");
+}
+
+
+export const facebookSignIn = async () => {
+  try {
+    const data = await authClient.signIn.social({
+        provider: "facebook"
+  })
+} catch (error) {
+    console.error(error);
+  }
+  redirect("/profile");
+}
+
+export const passkeySignIn = async () => {
+  //TODO: Implement passkey sign in
+  // const {data,error} = await authClient.passkey.addPasskey();
 }
 
 export async function signout() {

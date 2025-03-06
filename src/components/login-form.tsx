@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
 import { signin } from "@/lib/auth-actions";
+import { facebookSignIn } from "@/lib/auth-actions";
 
 export function LoginForm({
   className,
@@ -113,7 +114,7 @@ export function LoginForm({
             </svg>
             Google
           </Button>
-          <Button variant="outline" className="cursor-pointer" disabled={isLoading}>
+          <Button onClick={facebookSignIn} variant="outline" className="cursor-pointer" disabled={isLoading}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

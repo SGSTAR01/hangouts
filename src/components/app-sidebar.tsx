@@ -11,6 +11,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers";
 
 
 
@@ -49,7 +51,11 @@ const items = [
 ]
 
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+      });
+    
     return (
         <Sidebar variant="sidebar" collapsible="icon" {...props}>
             {/* <SidebarHeader>
@@ -78,7 +84,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
             </SidebarContent>
                 <SidebarFooter>
-                <div className="text-center">User: Sachin</div>
+                <div className="text-center">Hi, {session?.user?.username ?? "User"}</div>
                 </SidebarFooter>
         </Sidebar>
     )
