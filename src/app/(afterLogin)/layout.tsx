@@ -1,5 +1,5 @@
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 
 export default function AfterLogin({
@@ -11,6 +11,8 @@ export default function AfterLogin({
 
         <SidebarProvider>
             <AppSidebar />
+
+           
             {children}
 
         </SidebarProvider>
