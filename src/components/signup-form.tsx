@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
-import { signup } from "@/lib/auth-actions";
+import { googleSignIn, signup } from "@/lib/auth-actions";
 import { facebookSignIn } from "@/lib/auth-actions";
 
 export function SignupForm({
@@ -41,7 +41,6 @@ export function SignupForm({
             autoCorrect="off"
             autoComplete="name"
             disabled={isLoading}
-            required
           />
           {signUpState?.errors?.name && (
             <p className="text-sm text-red-500">{signUpState.errors.name}</p>
@@ -58,7 +57,7 @@ export function SignupForm({
             autoCorrect="off"
             autoComplete="username"
             disabled={isLoading}
-            required
+            
           />
           {signUpState?.errors?.username && (
             <p className="text-sm text-red-500">
@@ -77,7 +76,7 @@ export function SignupForm({
             autoCorrect="off"
             autoComplete="email"
             disabled={isLoading}
-            required
+            
           />
           {signUpState?.errors?.email && (
             <p className="text-sm text-red-500">{signUpState.errors.email}</p>
@@ -93,7 +92,7 @@ export function SignupForm({
             autoCapitalize="none"
             autoCorrect="off"
             disabled={isLoading}
-            required
+            
           />
           {signUpState?.errors?.password && (
             <p className="text-sm text-red-500">
@@ -108,7 +107,7 @@ export function SignupForm({
             name="confirmPassword"
             placeholder="Confirm Password"
             type="password"
-            required
+            
           />
           {signUpState?.errors?.confirmPassword && (
             <p className="text-sm text-red-500">
@@ -131,7 +130,7 @@ export function SignupForm({
           </span>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Button variant="outline" className="cursor-pointer" disabled={isLoading}>
+          <Button onClick={googleSignIn} variant="outline" className="cursor-pointer" disabled={isLoading}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

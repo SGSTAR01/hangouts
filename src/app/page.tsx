@@ -23,7 +23,7 @@ export default function Home() {
                   Explore Destinations
                 </button>
               </Link>
-              <Link href="/sign-up">
+              <Link href="/signup">
                 <button className="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-black">
                   Join Now
                 </button>

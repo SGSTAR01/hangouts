@@ -62,12 +62,25 @@ export async function signin(prevState: FormState, formData: FormData) {
 export const facebookSignIn = async () => {
   try {
     const data = await authClient.signIn.social({
-        provider: "facebook"
+        provider: "facebook",
+        callbackURL: "/profile",
   })
 } catch (error) {
     console.error(error);
+    redirect("/login");
   }
-  redirect("/profile");
+}
+
+export const googleSignIn = async () => {
+  try {
+    const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/profile",
+  })
+} catch (error) {
+    console.error(error);
+    redirect("/login");
+  }
 }
 
 export const passkeySignIn = async () => {

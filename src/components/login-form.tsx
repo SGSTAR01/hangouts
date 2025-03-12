@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
-import { signin } from "@/lib/auth-actions";
+import { googleSignIn, signin } from "@/lib/auth-actions";
 import { facebookSignIn } from "@/lib/auth-actions";
 
 export function LoginForm({
@@ -42,7 +42,6 @@ export function LoginForm({
             autoCorrect="off"
             autoComplete="email"
             disabled={isLoading}
-            required
           />
           {signInState?.errors?.email && (
             <p className="text-sm text-red-500">{signInState.errors.email}</p>
@@ -67,7 +66,7 @@ export function LoginForm({
             autoCorrect="off"
             autoComplete="current-password"
             disabled={isLoading}
-            required
+            
           />
           {signInState?.errors?.password && (
             <p className="text-sm text-red-500">
@@ -89,7 +88,7 @@ export function LoginForm({
           </span>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Button variant="outline" className="cursor-pointer" disabled={isLoading}>
+          <Button onClick={googleSignIn} variant="outline" className="cursor-pointer" disabled={isLoading}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

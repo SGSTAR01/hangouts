@@ -69,10 +69,10 @@ const Navbar = () => {
               Guides
             </Link>
             <hr />
-            <Link href="/sign-in" className="text-blue-600 hover:underline">
+            <Link href="/login" className="text-blue-600 hover:underline">
               Sign In
             </Link>
-            <Link href="/sign-up" className="px-4 py-2 bg-blue-600 text-white rounded-md text-center">
+            <Link href="/signup" className="px-4 py-2 bg-blue-600 text-white rounded-md text-center">
               Sign Up
             </Link>
           </div>

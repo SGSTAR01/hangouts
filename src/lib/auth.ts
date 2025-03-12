@@ -1,4 +1,5 @@
 import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
 import { username } from "better-auth/plugins";
 import { passkey } from "better-auth/plugins/passkey";
 import Database from "better-sqlite3";
@@ -15,12 +16,16 @@ export const auth = betterAuth({
             clientId: process.env.FACEBOOK_CLIENT_ID as string,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
         },
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+        }
     },
 
     account:{
         accountLinking: {
             enabled: true,
-            trustedProviders: ["facebook"]
+            trustedProviders: ["facebook","google"]
         },
     },
 
@@ -31,6 +36,7 @@ export const auth = betterAuth({
 
     plugins: [
         username(),
-        passkey()
+        passkey(),
+        nextCookies()
     ]
 })
