@@ -2,6 +2,8 @@
 
 import type React from "react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,7 +19,7 @@ export function LoginForm({
     signin,
     undefined
   );
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
   return (
     <form
       action={signInAction}
@@ -57,17 +59,26 @@ export function LoginForm({
               Forgot your password?
             </a>
           </div>
-          <Input
-            id="password"
-            name="password"
-            placeholder="Password"
-            type="password"
-            autoCapitalize="none"
-            autoCorrect="off"
-            autoComplete="current-password"
-            disabled={isLoading}
-            
-          />
+          <div className="relative">
+            <Input
+              id="password"
+              name="password"
+              placeholder="Password"
+              type={passwordVisible ? "text" : "password"}
+              autoCapitalize="none"
+              autoCorrect="off"
+              autoComplete="current-password"
+              disabled={isLoading}
+              required
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-3 flex items-center opacity-30"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              {passwordVisible ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
           {signInState?.errors?.password && (
             <p className="text-sm text-red-500">
               {signInState.errors.password}

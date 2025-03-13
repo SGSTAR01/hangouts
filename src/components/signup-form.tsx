@@ -1,6 +1,8 @@
 "use client";
 
 import type React from "react";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +19,10 @@ export function SignupForm({
     signup,
     undefined
   );
+  
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
   return (
     <form
       action={signUpAction}
@@ -84,16 +90,26 @@ export function SignupForm({
         </div>
         <div className="grid gap-2">
           <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            name="password"
-            placeholder="Password"
-            type="password"
-            autoCapitalize="none"
-            autoCorrect="off"
-            disabled={isLoading}
-            
-          />
+          {/* eye - password fixed */}
+          <div className="relative">
+            <Input
+              id="password"
+              name="password"
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Password"
+              autoCapitalize="none"
+              autoCorrect="off"
+              disabled={isLoading}
+              required
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-3 flex items-center opacity-30"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+            >
+              {passwordVisible ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
           {signUpState?.errors?.password && (
             <p className="text-sm text-red-500">
               {signUpState.errors.password}
@@ -102,13 +118,23 @@ export function SignupForm({
         </div>
         <div className="grid gap-2">
           <Label htmlFor="confirm-password">Confirm Password</Label>
-          <Input
-            id="confirm-password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            type="password"
-            
-          />
+           {/* eye - for passord view fixed */}
+           <div className="relative">
+            <Input
+              id="confirm-password"
+              name="confirmPassword"
+              type={confirmPasswordVisible ? "text" : "password"}
+              placeholder="Confirm Password"
+              required
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-3 flex items-center opacity-30"
+              onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+            >
+              {confirmPasswordVisible ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+          </div>
           {signUpState?.errors?.confirmPassword && (
             <p className="text-sm text-red-500">
               {signUpState.errors.confirmPassword}
