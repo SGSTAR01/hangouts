@@ -1,6 +1,6 @@
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 import {
-    
+    SidebarHeader,
     SidebarFooter,
     Sidebar,
     SidebarContent,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers";
-
+import ModeToggle from '@/components/ui/modetoggle'
 
 
 // Menu items.
@@ -54,13 +54,17 @@ const items = [
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const session = await auth.api.getSession({
         headers: await headers(),
-      });
-    
+    });
+
     return (
         <Sidebar variant="sidebar" collapsible="icon" {...props}>
-            {/* <SidebarHeader>
-                Header
-            </SidebarHeader> */}
+            <SidebarHeader>
+                <div className=" flex items-center justify-between px-6 text-2xl font-bold">
+                    <span >Hangout..</span>
+                    <ModeToggle />
+                </div>
+
+            </SidebarHeader>
 
             <SidebarContent className="flex justify-center">
                 <SidebarGroup className="text-xl" >
@@ -83,9 +87,9 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                 </SidebarGroup>
 
             </SidebarContent>
-                <SidebarFooter>
+            <SidebarFooter>
                 <div className="text-center">Hi, {session?.user?.username ?? "User"}</div>
-                </SidebarFooter>
+            </SidebarFooter>
         </Sidebar>
     )
 }
