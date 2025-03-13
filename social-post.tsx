@@ -90,7 +90,9 @@ export default function SocialPost({
   ],
   upvotes = 24,
   downvotes = 3,
-}: Partial<PostProps>) {
+}: Partial<PostProps>)
+
+{
   const [newComment, setNewComment] = useState("")
   const [voteCount, setVoteCount] = useState(upvotes - downvotes)
   const [userVote, setUserVote] = useState<"up" | "down" | null>(null)
