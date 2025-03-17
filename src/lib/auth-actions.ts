@@ -3,8 +3,13 @@
 import { redirect } from "next/navigation";
 import { authClient } from "./auth-client";
 import { auth } from "./auth";
-import { signInSchema, signUpSchema, FormState } from "../schemas/auth-definitions";
+import {
+  signInSchema,
+  signUpSchema,
+  FormState,
+} from "../schemas/auth-definitions";
 
+import { toast } from "sonner";
 
 export async function signup(prevState: FormState, formData: FormData) {
   const validatedFields = signUpSchema.safeParse({
@@ -20,7 +25,7 @@ export async function signup(prevState: FormState, formData: FormData) {
     };
   }
 
-  const { name,username,email,password } = validatedFields.data;
+  const { name, username, email, password } = validatedFields.data;
   const { data, error } = await authClient.signUp.email({
     name: name,
     username: username,
@@ -45,7 +50,7 @@ export async function signin(prevState: FormState, formData: FormData) {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  const  { email, password } = validatedFields.data;
+  const { email, password } = validatedFields.data;
   const { data, error } = await authClient.signIn.email({
     email: email,
     password: password,
@@ -58,35 +63,44 @@ export async function signin(prevState: FormState, formData: FormData) {
   redirect("/profile");
 }
 
-
 export const facebookSignIn = async () => {
   try {
     const data = await authClient.signIn.social({
-        provider: "facebook",
-        callbackURL: "/profile",
-  })
-} catch (error) {
+      provider: "facebook",
+      callbackURL: "/profile",
+    });
+  } catch (error) {
     console.error(error);
     redirect("/login");
   }
-}
+};
 
 export const googleSignIn = async () => {
   try {
     const data = await authClient.signIn.social({
-        provider: "google",
-        callbackURL: "/profile",
-  })
-} catch (error) {
+      provider: "google",
+      callbackURL: "/profile",
+    });
+  } catch (error) {
     console.error(error);
     redirect("/login");
   }
-}
+};
 
-export const passkeySignIn = async () => {
-  //TODO: Implement passkey sign in
-  // const {data,error} = await authClient.passkey.addPasskey();
-}
+export const addPasskey = async () => {
+    const data = await authClient.passkey.addPasskey({
+      name:"hangouts",
+      fetchOptions: {
+        onSuccess(context) {
+          toast.success("Passkey added successfully");
+        },
+        onError(context) {
+          toast.error(context.error.message);
+        },
+      },
+    });
+};
+
 
 export async function signout() {
   await authClient.signOut();

@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Navbar from "@/components/Navbar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
+import { addPasskey } from "@/lib/auth-actions";
 
 export default function ProfilePage() {
   const { data: session } = authClient.useSession();
@@ -21,11 +22,11 @@ export default function ProfilePage() {
         {/* welcome - Header Section */}
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold text-blue-900">
-            Welcome, {session?.user?.username}
+            Welcome, {session?.user?.username || "User!"}
           </h2>
         </div>
 
-        <p className="text-blue-900 text-sm">{new Date().toLocaleDateString()}</p>
+        <p className="text-blue-900 text-sm"></p>
 
         <div className="bg-blue-200 rounded-lg shadow-lg p-6 mt-4">
           {/* Profile Card */}
@@ -45,7 +46,7 @@ export default function ProfilePage() {
             </div>
 
             {/* Right Section: Button */}
-            <Button
+            <Button variant="secondary"
               className="bg-blue-500 text-white"
               onClick={() => setIsEditing(!isEditing)}
             >
@@ -138,8 +139,12 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <Button className="bg-blue-500 text-white mt-4">
+            <Button variant="secondary" className="bg-blue-500 text-white mt-4">
               + Add Email Address
+            </Button>
+
+            <Button onClick={addPasskey} variant="secondary" className="m-2 mt-4">
+              + Add PassKey
             </Button>
           </div>
         </div>

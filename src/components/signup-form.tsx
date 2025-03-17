@@ -193,7 +193,7 @@ export function SignupForm({
             Facebook
           </Button>
         </div>
-        <Button variant="outline" className="w-full cursor-pointer" disabled={isLoading}>
+        {/* <Button variant="outline" className="w-full cursor-pointer" disabled={isLoading}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -205,7 +205,7 @@ export function SignupForm({
             <path d="M12 6.5a5.5 5.5 0 0 1 5.5 5.5c0 .738-.146 1.442-.41 2.086l1.448 1.447a.75.75 0 0 1-.53 1.28.74.74 0 0 1-.53-.22l-1.448-1.446A5.5 5.5 0 1 1 12 6.5Z" />
           </svg>
           Sign up with Passkey
-        </Button>
+        </Button> */}
       </div>
       <div className="text-center text-sm">
         Already have an account?{" "}
