@@ -20,7 +20,7 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@types/better-sqlite3": "^7.6.12",
-    "better-auth": "^1.1.21",
+    "better-auth": "^1.2.4",
     "better-sqlite3": "^11.8.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -92,10 +92,16 @@ export const addPasskey = async () => {
       name:"hangouts",
       fetchOptions: {
         onSuccess(context) {
-          toast.success("Passkey added successfully");
+          toast.success("Passkey added successfully",{
+            closeButton: true,
+            richColors: true,
+          });
         },
         onError(context) {
-          toast.error(context.error.message);
+          toast.error(context.error.message,{
+            closeButton: true,
+            richColors: true,
+          });
         },
       },
     });
