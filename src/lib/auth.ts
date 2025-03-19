@@ -2,10 +2,16 @@ import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { username } from "better-auth/plugins";
 import { passkey } from "better-auth/plugins/passkey";
-import Database from "better-sqlite3";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { db } from "../drizzle/database"
+import  {schema}  from "../drizzle/schema"
  
 export const auth = betterAuth({
-    database: new Database("./sqlite.db"),
+    database: drizzleAdapter(db,{
+        provider: "sqlite",
+        schema: schema,
+        
+    }),
 
     emailAndPassword: {
         enabled: true,
@@ -36,11 +42,7 @@ export const auth = betterAuth({
 
     plugins: [
         username(),
-        passkey({
-            rpID: "localhost",
-            rpName: "localhost",
-            origin: "http://localhost:3000",
-        }),
+        passkey(),
         nextCookies()
     ]
 })

@@ -44,3 +44,4 @@ next-env.d.ts
 /sqlite.db
 /better-auth_migrations
 .vscode/settings.json
+drizzle.db

@@ -22,7 +22,7 @@ export default function ProfilePage() {
         {/* welcome - Header Section */}
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold text-blue-900">
-            Welcome, {session?.user?.username || "User!"}
+            Welcome, {session?.user?.username ?? "User!"}
           </h2>
         </div>
 
@@ -34,8 +34,8 @@ export default function ProfilePage() {
             {/* Left Section: Avatar & Name */}
             <div className="flex gap-6 items-center">
               <Avatar className="w-16 h-16">
-                <AvatarImage src={ session?.user?.image ?? "/avatar.jpg"} alt={session?.user?.username ?? ""} />
-                <AvatarFallback>DR</AvatarFallback>
+                <AvatarImage src={ session?.user?.image ?? undefined} alt={session?.user?.username ?? ""} />
+                <AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
