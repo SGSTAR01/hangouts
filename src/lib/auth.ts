@@ -7,6 +7,26 @@ import { db } from "../drizzle/database"
 import  {schema}  from "../drizzle/schema"
  
 export const auth = betterAuth({
+
+    user: {
+        additionalFields: {
+            bio: {
+                type: "string",
+                required: false,
+                defaultValue: "Hi, I'm new here!",
+            },
+            location: {
+                type: "string",
+                required: false,
+                defaultValue: "Earth",
+            },
+            dateOfBirth: {
+                type: "date",
+                required: false,
+            },
+        }
+    },
+
     database: drizzleAdapter(db,{
         provider: "sqlite",
         schema: schema,
