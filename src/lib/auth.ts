@@ -21,10 +21,27 @@ export const auth = betterAuth({
         facebook: {
             clientId: process.env.FACEBOOK_CLIENT_ID as string,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+            mapProfileToUser: (profile) => {
+                return {
+                    name: profile.name,
+                    email: profile.email,
+                    image: profile.picture.data.url,
+                    username: profile.email.split("@")[0]
+                }
+            }
         },
         google: {
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            display:"popup",
+            mapProfileToUser: (profile) => {
+                return {
+                    name: profile.name,
+                    email: profile.email,
+                    image: profile.picture,
+                    username: profile.email.split("@")[0]
+                }
+            }
         }
     },
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -33,10 +33,12 @@ export default function ProfilePage() {
           <div className="flex items-center justify-between">
             {/* Left Section: Avatar & Name */}
             <div className="flex gap-6 items-center">
+              <Suspense fallback = {<AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>} >
               <Avatar className="w-16 h-16">
                 <AvatarImage src={ session?.user?.image ?? undefined} alt={session?.user?.username ?? ""} />
-                <AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>
+  
               </Avatar>
+              </Suspense>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
                   {session?.user?.name}
