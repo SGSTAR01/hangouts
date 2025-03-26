@@ -135,9 +135,9 @@ export default function PostCardFeed({
     const postTime = formatDistanceToNow(timestamp, { addSuffix: true })
     
     return (
-        <div className="w-full max-w-lg mx-auto ">
+        <div className="w-full mx-auto ">
             {/* Post Card */}
-            <Card className="my-4 mx-2">
+            <Card className="rounded-none">
                 <CardHeader className="flex flex-row items-center gap-3 pb-2">
                     <Avatar>
                         <AvatarImage src={avatar} alt={username} />

@@ -59,7 +59,7 @@ export async function AppSidebar({
   });
 
   return (
-    <Sidebar variant="sidebar" collapsible="icon" {...props}>
+    <Sidebar  variant="sidebar" collapsible="icon" {...props}>
       <SidebarHeader>
         <div className=" flex items-center justify-between px-6 text-2xl font-bold">
           <span>Hangout..</span>

@@ -8,14 +8,16 @@ export default function AfterLogin({
     children: React.ReactNode;
 }>) {
     return (
+        <div className="px-7">
+            <SidebarProvider>
+                <AppSidebar className="md:ml-7" />
+                {/* make sidebar 2/3 width when screen < lg */}
 
-        <SidebarProvider>
-            <AppSidebar />
 
-           
-            {children}
+                {children}
 
-        </SidebarProvider>
+            </SidebarProvider>
+        </div>
 
     );
 }
