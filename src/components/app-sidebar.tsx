@@ -26,7 +26,7 @@ const items = [
   },
   {
     title: "Inbox",
-    url: "#",
+    url: "inbox",
     icon: Inbox,
   },
   {
@@ -36,7 +36,7 @@ const items = [
   },
   {
     title: "Post",
-    url: "#",
+    url: "/post",
     icon: Calendar,
   },
   {
@@ -46,7 +46,7 @@ const items = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
 ];
