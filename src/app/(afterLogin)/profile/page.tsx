@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import PostCardFeed from '@/components/PostCard-Feed';
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
-import { addPasskey } from "@/lib/auth-actions";
+import Image from 'next/image';
 
 export default function ProfilePage() {
   const { data: session } = authClient.useSession();
@@ -20,17 +20,24 @@ export default function ProfilePage() {
         {/* MAIN profile block */}
         <div className='w-full sm:w-6/10 '>
 
-          <div className="text-white overflow-hidden border ">
+          <div className="overflow-hidden border ">
             {/* Cover Image */}
             <div className="relative h-48 sm:h-64 bg-cover bg-center" style={{ backgroundImage: "url('/assets/dest-3.jpg')" }}>
               {/* Profile Image */}
               <div className="absolute -bottom-12 left-4 border-4 border-black rounded-full overflow-hidden w-24 h-24">
-                <img
-                  // src="/assets/dest-2.jpg"
-                  src={ session?.user?.image ?? undefined} 
-                  alt={session?.user?.username ?? ""}            
-                  className="w-full h-full object-cover"
-                />
+                {session?.user?.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt={session?.user?.username ?? "User"}
+                    placeholder="empty"
+                    fill
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+                    {session?.user?.username?.charAt(0).toUpperCase() ?? "?"}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -39,28 +46,27 @@ export default function ProfilePage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-xl font-bold">{session?.user?.name}</h1>
-                  <p className="text-gray-400">{session?.user?.username ?? "username loading!"}</p>
+                  <p className="text-m">{session?.user?.username ?? "username loading!"}</p>
                 </div>
                 <button className="px-4 py-1 border border-white rounded-full hover:bg-white hover:text-black text-sm">
                   Settings
                 </button>
               </div>
 
-              <p className="mt-4 text-sm text-gray-300">
-                Interested in travel towards mountains. <br />
-                Ready to hangout..
+              <p className="mt-4 text-sm">
+                {session?.user?.bio ?? "Hello World!"}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-400">
-                <span>📍 Siliguri, West Bengal, India</span>
-                <a href="https://github.com/sachin-bi" className="text-blue-400 hover:underline" target="_blank">github.com/sachin-bi</a>
-                <span>📱 Verified phone number</span>
-                <span>📅 Joined May 2024</span>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm ">
+                <span>📍{session?.user?.location}</span>
+                <a href="https://github.com/sachin-bi" className="hover:underline" target="_blank">github.com/sachin-bi</a>
+                <span>📱 {session?.user.emailVerified ? ("Verified") : ("Not Verified")} </span>
+                <span>📅 {session?.user.createdAt.toDateString()}</span>
               </div>
 
               <div className="mt-3 flex gap-6 text-sm">
-                <span><strong className="text-white">92</strong> Following</span>
-                <span><strong className="text-white">6</strong> Followers</span>
+                <span><strong >92</strong> Following</span>
+                <span className="text-sm"><strong>6</strong> Followers</span>
               </div>
             </div>
 
