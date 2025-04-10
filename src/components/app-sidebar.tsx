@@ -11,11 +11,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { NavUser } from "@/components/nav-user"
 import ModeToggle from "@/components/ui/modetoggle";
 import { Button } from "./ui/button";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import { signout } from "@/lib/auth-actions";
+import { Avatar } from "@radix-ui/react-avatar";
+
+
+// This is sample data.
+const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+}
 
 // Menu items.
 const items = [
@@ -26,7 +38,7 @@ const items = [
   },
   {
     title: "Inbox",
-    url: "inbox",
+    url: "#",
     icon: Inbox,
   },
   {
@@ -36,7 +48,7 @@ const items = [
   },
   {
     title: "Post",
-    url: "/post",
+    url: "#",
     icon: Calendar,
   },
   {
@@ -59,10 +71,12 @@ export async function AppSidebar({
   });
 
   return (
-    <Sidebar  variant="sidebar" collapsible="icon" {...props}>
-      <SidebarHeader>
+    <Sidebar variant="sidebar" collapsible="icon" {...props}>
+      <SidebarHeader className="mt-2">
         <div className=" flex items-center justify-between px-6 text-2xl font-bold">
-          <span>Hangout..</span>
+          {/* <Avatar src="public/assets/logo/logo_ryokou.svg"> </Avatar> */}
+          {/* <img src="public/assets/logo/logo_ryokou.svg" alt="L" /> */}
+          <span>旅 - Ryokou</span>
           <ModeToggle />
         </div>
       </SidebarHeader>
@@ -88,7 +102,9 @@ export async function AppSidebar({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="flex flex-row items-center justify-center m-2">
+      <NavUser user={data.user} />
+      {/* old code - for logout */}
+        {/* <div className="flex flex-row items-center justify-center m-2">
           <div className="text-center">
             Hi, {session?.user?.username ?? "User"}
           </div>
@@ -97,7 +113,7 @@ export async function AppSidebar({
                 Logout?
             </Button>
           </div>
-        </div>
+        </div> */}
       </SidebarFooter>
     </Sidebar>
   );

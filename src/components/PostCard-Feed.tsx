@@ -133,33 +133,40 @@ export default function PostCardFeed({
 
     const timeRemaining = hangoutTimer ? formatDistanceToNow(hangoutTimer, { addSuffix: true }) : ""
     const postTime = formatDistanceToNow(timestamp, { addSuffix: true })
-    
+
     return (
         <div className="w-full mx-auto ">
             {/* Post Card */}
-            <Card className="rounded-none">
-                <CardHeader className="flex flex-row items-center gap-3 pb-2">
-                    <Avatar>
-                        <AvatarImage src={avatar} alt={username} />
-                        <AvatarFallback>{username.slice(0, 2).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col">
-                        <span className="font-semibold">@{username}</span>
-                        <span className="text-xs text-muted-foreground">{postTime}</span>
+            <Card className="rounded-none py-4">
+                <CardHeader className="pb-1">
+                    <div className="flex items-start justify-between w-full gap-3 flex-wrap">
+                        <div className="flex items-center gap-3">
+                            <Avatar>
+                                <AvatarImage src={avatar} alt={username} />
+                                <AvatarFallback>{username.slice(0, 2).toUpperCase()}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col">
+                                <span className="font-semibold">@{username}</span>
+                                <span className="text-xs text-muted-foreground">{postTime}</span>
+                            </div>
+                        </div>
+
+                        {openToHangout && (
+                            <Badge variant="outline" className="flex items-center gap-1 mt-2 sm:mt-0">
+                                <Timer className="h-3 w-3" />
+                                <span>Open to hangout {timeRemaining}</span>
+                            </Badge>
+                        )}
                     </div>
-                    {openToHangout && (
-                        <Badge variant="outline" className="ml-auto flex items-center gap-1">
-                            <Timer className="h-3 w-3" />
-                            <span>Open to hangout {timeRemaining}</span>
-                        </Badge>
-                    )}
                 </CardHeader>
-                <CardContent className="pb-2">
-                    <h3 className="text-xl font-bold mb-2">{title}</h3>
-                    <p className="mb-3">{description}</p>
+
+                <CardContent className="pb-1">
+                    {/* no need of title feild in post */}
+                    {/* <h3 className="text-xl font-bold mb-2">{title}</h3> */}
+                    <p className="mb-1">{description}</p>
 
                     {location && (
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
                             <MapPin className="h-4 w-4" />
                             <span>{location}</span>
                         </div>
@@ -189,8 +196,9 @@ export default function PostCardFeed({
                 </CardContent>
 
                 <CardFooter className="flex flex-col pt-0">
-                    <div className="flex items-center justify-between w-full py-2">
-                        <div className="flex items-center gap-1">
+                    <div className="flex flex-wrap items-center justify-between w-full gap-y-2 py-2">
+                        {/* Votes */}
+                        <div className="flex items-center gap-1 flex-shrink-0">
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -210,14 +218,16 @@ export default function PostCardFeed({
                             </Button>
                         </div>
 
-                        <Button variant="ghost" size="sm" className="gap-1">
+                        {/* Comments */}
+                        <Button variant="ghost" size="sm" className="gap-1 flex-shrink-0">
                             <MessageSquare className="h-4 w-4" />
                             <span>{allComments.length} Comments</span>
                         </Button>
 
+                        {/* Share Dropdown */}
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="gap-1">
+                                <Button variant="ghost" size="sm" className="gap-1 flex-shrink-0">
                                     <Share2 className="h-4 w-4" />
                                     <span>Share</span>
                                 </Button>
@@ -238,12 +248,8 @@ export default function PostCardFeed({
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
-
-                    {/* <Separator className="my-2" /> */}
-
-                    {/* Comments Section */}
-                    
                 </CardFooter>
+
             </Card>
 
         </div>
