@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -110,4 +111,7 @@ export function NavUser() {
       </SidebarMenuItem>
     </SidebarMenu>
   );
+
+
+
 }
