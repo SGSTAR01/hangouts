@@ -16,6 +16,7 @@ import { headers } from "next/headers";
 import ModeToggle from "@/components/ui/modetoggle";
 import { Button } from "./ui/button";
 import { signout } from "@/lib/auth-actions";
+import { NavUser } from "./nav-user";
 
 // Menu items.
 const items = [
@@ -59,7 +60,7 @@ export async function AppSidebar({
   });
 
   return (
-    <Sidebar  variant="sidebar" collapsible="icon" {...props}>
+    <Sidebar variant="sidebar" collapsible="icon" {...props}>
       <SidebarHeader>
         <div className=" flex items-center justify-between px-6 text-2xl font-bold">
           <span>Hangout..</span>
@@ -88,18 +89,7 @@ export async function AppSidebar({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-      <NavUser/>
-      {/* old code - for logout */}
-        {/* <div className="flex flex-row items-center justify-center m-2">
-          <div className="text-center">
-            Hi, {session?.user?.username ?? "User"}
-          </div>
-          <div className="text-center m-2">
-            <Button className="cursor-pointer" variant={"destructive"} onClick={signout}>
-                Logout?
-            </Button>
-          </div>
-        </div>
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
