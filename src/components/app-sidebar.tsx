@@ -17,17 +17,9 @@ import { Button } from "./ui/button";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { signout } from "@/lib/auth-actions";
-import { Avatar } from "@radix-ui/react-avatar";
 
+import { NavUser } from "./nav-user";
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-}
 
 // Menu items.
 const items = [
@@ -72,7 +64,9 @@ export async function AppSidebar({
 
   return (
     <Sidebar variant="sidebar" collapsible="icon" {...props}>
-      <SidebarHeader className="mt-2">
+
+      <SidebarHeader>
+
         <div className=" flex items-center justify-between px-6 text-2xl font-bold">
           {/* <Avatar src="public/assets/logo/logo_ryokou.svg"> </Avatar> */}
           {/* <img src="public/assets/logo/logo_ryokou.svg" alt="L" /> */}
@@ -102,18 +96,9 @@ export async function AppSidebar({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-      <NavUser user={data.user} />
-      {/* old code - for logout */}
-        {/* <div className="flex flex-row items-center justify-center m-2">
-          <div className="text-center">
-            Hi, {session?.user?.username ?? "User"}
-          </div>
-          <div className="text-center m-2">
-            <Button className="cursor-pointer" variant={"destructive"} onClick={signout}>
-                Logout?
-            </Button>
-          </div>
-        </div> */}
+
+        <NavUser />
+
       </SidebarFooter>
     </Sidebar>
   );

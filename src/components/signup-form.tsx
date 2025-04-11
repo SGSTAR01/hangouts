@@ -24,15 +24,15 @@ export function SignupForm({
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   return (
-    <div className={cn("flex flex-col gap-6", className)}>
-      <form action={signUpAction} className="flex flex-col gap-6" {...props}>
+    <div className={cn("flex flex-col gap-1", className)}>
+      <form action={signUpAction} className="flex flex-col gap-2" {...props}>
         <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <p className="text-balance text-sm text-muted-foreground">
             Enter your details below to create your account
           </p>
         </div>
-        <div className="grid gap-6">
+        <div className="grid gap-3">
           <div className="grid gap-2">
             <Label htmlFor="fullname">Full Name</Label>
             <Input
@@ -163,7 +163,7 @@ export function SignupForm({
           Or continue with
         </span>
       </div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={googleSignIn}
           variant="outline"
