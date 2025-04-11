@@ -1,18 +1,37 @@
-import { GalleryVerticalEnd } from "lucide-react"
+import { GalleryVerticalEnd } from "lucide-react";
 
-import { LoginForm } from "../../../components/login-form"
+import { LoginForm } from "../../../components/login-form";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
-      <div className="flex flex-col gap-4 p-6 md:p-10">
+      <div className="flex flex-col items-center justify-center gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <a href="#" className="flex items-center gap-2 font-medium">
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <GalleryVerticalEnd className="size-4" />
-            </div>
-            Hangouts.
-          </a>
+          <Link href="/" className="flex items-center flex-col font-medium">
+            <svg
+              className="mb-2 size-20 rounded-2xl"
+              width="200"
+              height="200"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="100%" height="100%" fill="#000000" />
+              <text
+                x="50%"
+                y="50%"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                fontFamily="serif"
+                fontSize="120"
+                // fill="#1f2937"
+                fill="#ffffff"
+              >
+                旅
+              </text>
+            </svg>
+            Ryodou
+          </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
@@ -28,6 +47,5 @@ export default function LoginPage() {
         />
       </div>
     </div>
-  )
+  );
 }
-

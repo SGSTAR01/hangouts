@@ -5,8 +5,8 @@ import { Toaster } from "sonner";
 
 
 export const metadata: Metadata = {
-  title: "Hangouts",
-  description: "Find Your Perfect Hangout Partner",
+  title: "Ryokou",
+  description: "Find Your Perfect Destination Mate",
 };
 
 export default function RootLayout({

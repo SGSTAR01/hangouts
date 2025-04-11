@@ -88,7 +88,9 @@ export async function AppSidebar({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <div className="flex flex-row items-center justify-center m-2">
+      <NavUser/>
+      {/* old code - for logout */}
+        {/* <div className="flex flex-row items-center justify-center m-2">
           <div className="text-center">
             Hi, {session?.user?.username ?? "User"}
           </div>
