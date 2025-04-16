@@ -11,14 +11,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavUser } from "@/components/nav-user"
+
+// import { NavUser } from "@/components/nav-user"
 import ModeToggle from "@/components/ui/modetoggle";
-import { Button } from "./ui/button";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import { signout } from "@/lib/auth-actions";
-
 import { NavUser } from "./nav-user";
+
 
 
 // Menu items.
@@ -86,7 +85,7 @@ export async function AppSidebar({
                   <SidebarMenuButton className="" size={"lg"} asChild>
                     <a href={item.url}>
                       <item.icon />
-                      <span className="px-4">{item.title}</span>
+                      <span className="px-4 ">{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

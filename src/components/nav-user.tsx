@@ -26,7 +26,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { auth } from "@/lib/auth";
+// import { auth } from "@/lib/auth";
 import { signout } from "@/lib/auth-actions";
 import { authClient } from "@/lib/auth-client";
 
